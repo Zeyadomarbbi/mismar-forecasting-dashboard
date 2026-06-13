@@ -1,53 +1,42 @@
-# لوحة توقع طلبات الغسيل
+# mismar-forecasting-dashboard
 
-تطبيق `Streamlit` احترافي بواجهة عربية و`RTL` لعرض Forecast الطلب خلال الأيام السبعة القادمة حسب المدن الرئيسية وكذلك لموديل `كل المدن`.
+التطبيق الأساسي في هذا المستودع أصبح واجهة **Next.js** داخل المجلد [frontend](./frontend).
 
-## الملفات المعتمدة
+## التطبيق الأساسي
 
-يعتمد التطبيق فقط على ملفات CSV الحقيقية التالية:
+- الواجهة الرئيسية: `frontend/`
+- مبنية بـ Next.js + React + TypeScript + Tailwind
+- تعتمد على ملفات CSV الحقيقية الموجودة في المستودع
+- قابلة للنشر على Vercel بدون Python أو Streamlit
 
-- `01_all_series_next_7_days_forecast.csv`
-- `02_presentation_forecast.csv`
-- `03_weekly_forecast_summary.csv`
-- `04_all_validation_results.csv`
-- `05_all_test_results.csv`
-- `06_model_metrics.csv`
-- `07_training_summary.csv`
+## نسخة Streamlit
 
-ويبحث عنها بالترتيب داخل:
+ملفات Streamlit القديمة ما زالت موجودة في الجذر حاليًا كنسخة legacy ولم يتم حذفها حتى يتم التحقق الكامل من الواجهة الجديدة.
 
-1. `./data/`
-2. `./`
-3. `/content/lstm_forecasting_results/`
-
-## التشغيل
+## تشغيل الواجهة الجديدة
 
 ```bash
-pip install -r requirements.txt
-streamlit run app.py
+cd frontend
+npm install
+npm run prepare:data
+npm run dev
 ```
 
-## هيكل المشروع
+## التحقق والبناء
 
-- `app.py`: التطبيق الرئيسي والصفحات والفلاتر.
-- `data_loader.py`: اكتشاف الملفات، تنظيف الأعمدة، التحقق من الجودة، وتحضير البيانات.
-- `charts.py`: كل الرسوم التفاعلية باستخدام `Plotly`.
-- `components.py`: عناصر العرض المشتركة مثل الهيدر والكروت.
-- `utils.py`: الألوان، التنسيقات، التصدير، وأسماء الأيام العربية.
-- `styles.css`: النظام البصري والـRTL.
+```bash
+cd frontend
+npm run lint
+npm run typecheck
+npm test
+npm run build
+```
 
-## الصفحات
+## النشر على Vercel
 
-- `Executive Forecast`
-- `City Forecasts`
-- `All Cities Forecast`
-- `Model Performance`
-- `Actual vs Predicted`
-- `Data Details`
-- `Methodology`
-
-## ملاحظات
-
-- لا يتم استخدام أي Mock Data.
-- في حال غياب ملف أو عمود مهم، يظهر تحذير واضح للمستخدم.
-- التصدير إلى CSV يتم بترميز `utf-8-sig` حتى تظهر العربية بشكل صحيح في Excel.
+1. ارفع المستودع إلى GitHub.
+2. افتح Vercel واختر Import Repository.
+3. اجعل `Root Directory` = `frontend`.
+4. اختر `Next.js`.
+5. استخدم `npm run build`.
+6. انشر التطبيق.

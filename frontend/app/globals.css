@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: #f6f8fb;
+  color: #10233f;
+}
+
+body {
+  font-feature-settings: "kern";
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.numbers-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.surface-card {
+  @apply rounded-card border border-border bg-surface shadow-card;
+}
+
+.chart-card {
+  @apply surface-card p-4 md:p-5;
+}
+
+.section-grid {
+  @apply grid gap-4 lg:gap-5;
+}
+
+.soft-scrollbar::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+.soft-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
